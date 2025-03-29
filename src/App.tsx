@@ -1,4 +1,5 @@
 
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -23,38 +24,43 @@ import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
+// Create a client
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <ComplaintProvider>
-        <DiscussionProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/complaints" element={<ComplaintsIndex />} />
-                <Route path="/complaints/:id" element={<ComplaintDetail />} />
-                <Route path="/complaints/new" element={<ComplaintNew />} />
-                <Route path="/discussions" element={<DiscussionsIndex />} />
-                <Route path="/discussions/:id" element={<DiscussionDetail />} />
-                <Route path="/discussions/new" element={<DiscussionNew />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/notifications" element={<Notifications />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </BrowserRouter>
-          </TooltipProvider>
-        </DiscussionProvider>
-      </ComplaintProvider>
-    </AuthProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  return (
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <ComplaintProvider>
+            <DiscussionProvider>
+              <TooltipProvider>
+                <Toaster />
+                <Sonner />
+                <BrowserRouter>
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/complaints" element={<ComplaintsIndex />} />
+                    <Route path="/complaints/:id" element={<ComplaintDetail />} />
+                    <Route path="/complaints/new" element={<ComplaintNew />} />
+                    <Route path="/discussions" element={<DiscussionsIndex />} />
+                    <Route path="/discussions/:id" element={<DiscussionDetail />} />
+                    <Route path="/discussions/new" element={<DiscussionNew />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/notifications" element={<Notifications />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </BrowserRouter>
+              </TooltipProvider>
+            </DiscussionProvider>
+          </ComplaintProvider>
+        </AuthProvider>
+      </QueryClientProvider>
+    </React.StrictMode>
+  );
+};
 
 export default App;
